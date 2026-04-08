@@ -32,6 +32,7 @@ Scope:
 Narrow scope focusing only on essential social media features like posting, viewing, and liking content.
 
 Product Spec
+
 	1.	User Stories (Required and Optional)
 
 Required Must-have Stories
@@ -49,6 +50,7 @@ User can edit or delete their posts
 User can comment on posts
 User can view other user profiles
 User can pull to refresh the feed
+
 	2.	Screen Archetypes
 
 Login Screen
@@ -86,17 +88,11 @@ Sign Up Screen leads to Home Feed
 Home Feed leads to Create Post
 Home Feed leads to Profile
 
-Profile leads to Post Details (optional)
 
 Wireframes
 
-Add hand-drawn wireframes here
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/31639ec1-3dc7-4fb4-b52d-c31c9dc480b0" />
 
-BONUS Digital Wireframes and Mockups
-Optional
-
-BONUS Interactive Prototype
-Optional
 
 Schema
 
