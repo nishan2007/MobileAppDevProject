@@ -1,10 +1,7 @@
 # MobileAppDevProject
 # SimpleSocial
 
-Team members: 
-1.Nishan narain
-2.Sebastian Rodriguez
-3.Sabrina Valdivia
+Team members: Nishan narain, Sebastian Rodriguez,and Sabrina Valdivia
 
 SimpleSocial is a basic social media application that allows users to create accounts, log in, and share posts with captions. Users can view a feed of posts and interact with content in a clean and simple interface.
 
