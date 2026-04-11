@@ -1,150 +1,185 @@
 # MobileAppDevProject
-Original App Design Project - README Template
-SimpleSocial
+# SimpleSocial
 
-Table of Contents
-Overview
-Product Spec
-Wireframes
-Schema
+Submitted by: **Nishan Narain**
 
-Overview
+SimpleSocial is a basic social media application that allows users to create accounts, log in, and share posts with captions. Users can view a feed of posts and interact with content in a clean and simple interface.
 
-Description
-SimpleSocial is a basic social media application that allows users to create accounts, log in, and share posts with captions. Users can view a feed of posts from all users and interact by liking posts. The app focuses on core social media functionality with a clean and simple user experience.
+---
 
-App Evaluation
+## Table of Contents
+1. Overview  
+2. App Evaluation  
+3. Product Spec  
+   - User Stories  
+   - Screen Archetypes  
+   - Navigation  
+4. Wireframes  
+5. Schema  
+6. Networking  
+7. Video Walkthrough  
+8. Notes  
+9. License  
 
-Category: Social
+---
 
-Mobile: Yes, mobile-only application
+## Overview
 
-Story:
-This app allows users to share moments from their daily lives through posts and view what others are sharing in a simple feed-based interface.
+### Description
+SimpleSocial is a lightweight social media app focused on core features such as authentication, posting, and feed interaction.
 
-Market:
-Students and casual users who want a lightweight social media experience without complex features.
+---
 
-Habit:
-Can be used daily to check posts and share updates.
+## App Evaluation
 
-Scope:
-Narrow scope focusing only on essential social media features like posting, viewing, and liking content.
+- **Category:** Social  
+- **Mobile:** Yes, mobile-only application  
+- **Story:** Users share moments and view others’ posts in a simple feed  
+- **Market:** Students and casual users  
+- **Habit:** Daily usage for checking and posting updates  
+- **Scope:** Narrow, focused on core functionality  
 
-Product Spec
+---
 
-	1.	User Stories (Required and Optional)
+## Product Spec
 
-Required Must-have Stories
-User can register an account
-User can log in and log out
-User can create a post with an image and caption
-User can view a feed of posts
-User can like posts
-User can view their own profile
-User can see their posts on their profile
+### User Stories
 
-Optional Nice-to-have Stories
-User stays logged in across sessions
-User can edit or delete their posts
-User can comment on posts
-User can view other user profiles
-User can pull to refresh the feed
+#### ✅ Required (Completed)
+- [x] User can register an account  
+- [x] User can log in and log out  
+- [x] User can create a post with image and caption  
+- [x] User can view a feed of posts  
+- [x] User can like posts  
+- [x] User can stay logged in across sessions  
 
-	2.	Screen Archetypes
+#### 🔄 In Progress
+- [ ] User can comment on posts  
+- [ ] User can view their profile  
+- [ ] User can see their posts on profile  
 
-Login Screen
-User can log in
-User can navigate to sign up
+#### ⏳ Planned (Next Sprint)
+- [ ] User can edit or delete posts  
+- [ ] User can view other user profiles  
+- [ ] User can pull to refresh feed  
+- [ ] Infinite scrolling for feed  
+- [ ] Notifications system  
 
-Sign Up Screen
-User can create a new account
+---
 
-Home Feed Screen
-User can scroll through posts
-User can like posts
+### Screen Archetypes
 
-Create Post Screen
-User can upload an image
-User can add a caption
-User can submit a post
+- **Login Screen**
+  - User logs in
+  - Navigate to sign up
 
-Profile Screen
-User can view their posts
-User can see their username
-	3.	Navigation
+- **Sign Up Screen**
+  - User creates account
 
-Tab Navigation (Tab to Screen)
-Home Feed
-Create Post
-Profile
+- **Home Feed Screen**
+  - View posts
+  - Like posts
 
-Flow Navigation (Screen to Screen)
+- **Create Post Screen**
+  - Upload image
+  - Add caption
+  - Submit post
 
-Login Screen leads to Home Feed
-Login Screen leads to Sign Up Screen
-Sign Up Screen leads to Home Feed
+- **Profile Screen**
+  - View user posts
+  - Display username
 
-Home Feed leads to Create Post
-Home Feed leads to Profile
+---
 
+### Navigation
 
-Wireframes
+#### Tab Navigation
+- Home Feed  
+- Create Post  
+- Profile  
 
-<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/31639ec1-3dc7-4fb4-b52d-c31c9dc480b0" />
+#### Flow Navigation
+- Login → Home Feed  
+- Login → Sign Up  
+- Sign Up → Home Feed  
+- Home Feed → Create Post  
+- Home Feed → Profile  
 
+---
 
-Schema
+## Wireframes
 
-Models
+*(Add your wireframe image here if required)*
 
-User
-username: String, unique username
-password: String, user password
-createdAt: DateTime, account creation date
+---
 
-Post
-postId: String, unique post ID
-userId: String, ID of user who created post
-image: File, uploaded image
-caption: String, post caption
-likesCount: Number, number of likes
-createdAt: DateTime, time post was created
+## Schema
 
-Like
-likeId: String, unique like ID
-userId: String, user who liked
-postId: String, post that was liked
+### Models
 
-Networking
+**User**
+- username: String  
+- password: String  
+- createdAt: DateTime  
 
-List of Network Requests by Screen
+**Post**
+- postId: String  
+- userId: String  
+- image: File  
+- caption: String  
+- likesCount: Number  
+- createdAt: DateTime  
 
-Login Screen
-POST /login to authenticate user
+**Like**
+- likeId: String  
+- userId: String  
+- postId: String  
 
-Sign Up Screen
-POST /register to create new user
+---
 
-Home Feed Screen
-GET /posts to retrieve all posts
-POST /like to like a post
+## Networking
 
-Create Post Screen
-POST /posts to create a new post
+### Requests by Screen
 
-Profile Screen
-GET /users/{id}/posts to retrieve user posts
+**Login**
+- POST /login  
 
-Example Request Snippets
+**Sign Up**
+- POST /register  
 
-Login Request
-POST /login
-username: user1
-password: password123
+**Home Feed**
+- GET /posts  
+- POST /like  
 
-Create Post
-POST /posts
-userId: 123
-caption: My first post
-image: file_url
+**Create Post**
+- POST /posts  
+
+**Profile**
+- GET /users/{id}/posts  
+
+---
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+👉 *(Paste your Loom link here)*
+
+Example:
+https://loom.com/your-video-link
+
+---
+
+## Notes
+
+- Built using SwiftUI  
+- Backend powered by Parse (Back4App)  
+- Focused on clean UI and core features  
+
+---
+
+## License
+
+Copyright 2026 Nishan Narain
+
+Licensed under the Apache License, Version 2.0
