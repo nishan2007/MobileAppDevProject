@@ -1,14 +1,14 @@
 //
-//  Post.swift
+//  User.swift
 //  SimpleSocial
 //
-//  Created by Nishan Narain on 4/8/26.
+//  Created by Nishan Narain on 4/11/26.
 //
 
 import Foundation
 import ParseSwift
 
-struct Post: ParseObject {
+struct User: ParseUser {
     var objectId: String?
     var createdAt: Date?
     var updatedAt: Date?
@@ -16,8 +16,8 @@ struct Post: ParseObject {
     var originalData: Data?
 
     var username: String?
-    var category: String?
-    var caption: String?
-    var likes: Int?
-    var comments: Int?
+    var email: String?
+    var emailVerified: Bool?
+    var password: String?
+    var authData: [String : [String : String]?]?
 }

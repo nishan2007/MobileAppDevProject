@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ParseSwift
 
 struct SignUpView: View {
     @Binding var username: String
@@ -21,6 +22,23 @@ struct SignUpView: View {
         !email.trimmingCharacters(in: .whitespaces).isEmpty &&
         !password.isEmpty &&
         password == confirmPassword
+    }
+    
+    
+    private func createAccount() {
+        var newUser = User()
+        newUser.username = username
+        newUser.email = email
+        newUser.password = password
+
+        Task {
+            do {
+                _ = try await newUser.signup()
+                onCreateAccountTapped()
+            } catch {
+                print("Sign up failed: \(error)")
+            }
+        }
     }
 
     var body: some View {
@@ -75,7 +93,7 @@ struct SignUpView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
 
-                    Button(action: onCreateAccountTapped) {
+                    Button(action: createAccount) {
                         Text("Create Account")
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity)

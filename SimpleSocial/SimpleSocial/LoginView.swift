@@ -14,6 +14,7 @@
 //
 
 import SwiftUI
+import ParseSwift
 
 struct LoginView: View {
     @Binding var username: String
@@ -22,6 +23,21 @@ struct LoginView: View {
 
     @State private var password: String = ""
 
+    
+    private func login() {
+        Task {
+            do {
+                _ = try await User.login(username: username, password: password)
+                onLoginTapped()
+            } catch {
+                print("Login failed: \(error)")
+            }
+        }
+    }
+    
+    
+    
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -67,7 +83,7 @@ struct LoginView: View {
                     .padding(.top, 10)
 
                     // Login Button
-                    Button(action: onLoginTapped) {
+                    Button(action: login) {
                         Text("Log In")
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity)

@@ -6,13 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DDB39B3A2F8A010F003481EC /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DDB39B392F8A010F003481EC /* ParseSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DDC9E3CA2F860F0E00D64C27 /* SimpleSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DDB39B3F2F8A03E5003481EC /* Exceptions for "SimpleSocial" folder in "SimpleSocial" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Untitled.swift,
+			);
+			target = DDC9E3C92F860F0E00D64C27 /* SimpleSocial */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DDC9E3CC2F860F0E00D64C27 /* SimpleSocial */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DDB39B3F2F8A03E5003481EC /* Exceptions for "SimpleSocial" folder in "SimpleSocial" target */,
+			);
 			path = SimpleSocial;
 			sourceTree = "<group>";
 		};
@@ -23,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB39B3A2F8A010F003481EC /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +83,7 @@
 			);
 			name = SimpleSocial;
 			packageProductDependencies = (
+				DDB39B392F8A010F003481EC /* ParseSwift */,
 			);
 			productName = SimpleSocial;
 			productReference = DDC9E3CA2F860F0E00D64C27 /* SimpleSocial.app */;
@@ -94,6 +113,9 @@
 			);
 			mainGroup = DDC9E3C12F860F0E00D64C27;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DDB39B382F8A010F003481EC /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DDC9E3CB2F860F0E00D64C27 /* Products */;
 			projectDirPath = "";
@@ -328,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDB39B382F8A010F003481EC /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDB39B392F8A010F003481EC /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDB39B382F8A010F003481EC /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DDC9E3C22F860F0E00D64C27 /* Project object */;
 }

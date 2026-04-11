@@ -14,6 +14,7 @@ struct ContentView: View {
     enum Screen {
         case login
         case signup
+        case main
     }
 
     var body: some View {
@@ -22,7 +23,7 @@ struct ContentView: View {
             LoginView(
                 username: $username,
                 onLoginTapped: {
-                    // later we’ll go to main app
+                    currentScreen = .main
                 },
                 onSignUpTapped: {
                     currentScreen = .signup
@@ -33,9 +34,17 @@ struct ContentView: View {
             SignUpView(
                 username: $username,
                 onCreateAccountTapped: {
-                    currentScreen = .login
+                    currentScreen = .main
                 },
                 onBackToLoginTapped: {
+                    currentScreen = .login
+                }
+            )
+
+        case .main:
+            MainAppView(
+                currentUserName: username.isEmpty ? "User" : username,
+                onLogoutTapped: {
                     currentScreen = .login
                 }
             )
