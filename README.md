@@ -163,10 +163,7 @@ SimpleSocial is a lightweight social media app focused on core features such as 
 
 Here's a walkthrough of implemented user stories:
 
-👉 *(Paste your Loom link here)*
-
-Example:
-https://loom.com/your-video-link
+https://www.loom.com/share/46c5b7ac10f94fd39ca34a9268120a6d
 
 ---
 
