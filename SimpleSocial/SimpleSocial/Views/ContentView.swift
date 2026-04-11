@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var username: String = ""
-    @State private var currentScreen: Screen = .login
+    @State private var username: String = AuthService.shared.currentDisplayName()
+    @State private var currentScreen: Screen = AuthService.shared.isLoggedIn() ? .main : .login
 
     enum Screen {
         case login
@@ -23,6 +23,7 @@ struct ContentView: View {
             LoginView(
                 username: $username,
                 onLoginTapped: {
+                    username = AuthService.shared.currentDisplayName()
                     currentScreen = .main
                 },
                 onSignUpTapped: {
@@ -34,6 +35,7 @@ struct ContentView: View {
             SignUpView(
                 username: $username,
                 onCreateAccountTapped: {
+                    username = AuthService.shared.currentDisplayName()
                     currentScreen = .main
                 },
                 onBackToLoginTapped: {
@@ -43,8 +45,9 @@ struct ContentView: View {
 
         case .main:
             MainAppView(
-                currentUserName: username.isEmpty ? "User" : username,
+                currentUserName: username.isEmpty ? AuthService.shared.currentDisplayName() : username,
                 onLogoutTapped: {
+                    username = ""
                     currentScreen = .login
                 }
             )

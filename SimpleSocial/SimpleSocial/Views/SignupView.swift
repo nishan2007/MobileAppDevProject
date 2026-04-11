@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ParseSwift
+
 
 struct SignUpView: View {
     @Binding var username: String
@@ -16,6 +16,7 @@ struct SignUpView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
+    @State private var errorMessage: String? = nil
 
     private var isFormValid: Bool {
         !username.trimmingCharacters(in: .whitespaces).isEmpty &&
@@ -26,16 +27,22 @@ struct SignUpView: View {
     
     
     private func createAccount() {
-        var newUser = User()
-        newUser.username = username
-        newUser.email = email
-        newUser.password = password
+        errorMessage = nil
 
         Task {
             do {
-                _ = try await newUser.signup()
+                _ = try await AuthService.shared.signUp(
+                    username: username,
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword
+                )
                 onCreateAccountTapped()
+            } catch let error as AuthServiceError {
+                errorMessage = error.errorDescription
+                print("Sign up failed: \(error)")
             } catch {
+                errorMessage = "Something went wrong. Try again"
                 print("Sign up failed: \(error)")
             }
         }
@@ -86,8 +93,16 @@ struct SignUpView: View {
                     }
                     .padding(.top, 8)
 
+
                     if !confirmPassword.isEmpty && password != confirmPassword {
                         Text("Passwords do not match.")
+                            .font(.footnote)
+                            .foregroundStyle(.red)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
                             .font(.footnote)
                             .foregroundStyle(.red)
                             .frame(maxWidth: .infinity, alignment: .leading)

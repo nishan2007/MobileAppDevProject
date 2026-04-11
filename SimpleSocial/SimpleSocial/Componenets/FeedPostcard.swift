@@ -1,5 +1,5 @@
 //
-//  Postcard.swift
+//  FeedPostCard.swift
 //  SimpleSocial
 //
 //  Created by Nishan Narain on 4/8/26.
@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FeedPostCard: View {
     let post: FeedPost
+    let onLikeTapped: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -47,8 +48,29 @@ struct FeedPostCard: View {
                 }
             }
 
+            if let imageURL = post.imageURL {
+                AsyncImage(url: imageURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                } placeholder: {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemGray5))
+                        .frame(height: 220)
+                        .overlay {
+                            ProgressView()
+                        }
+                }
+            }
+
             HStack(spacing: 20) {
-                Label("\(post.likes)", systemImage: "heart")
+                Button(action: onLikeTapped) {
+                    Label("\(post.likes)", systemImage: post.isLikedByCurrentUser ? "heart.fill" : "heart")
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(post.isLikedByCurrentUser ? .red : .secondary)
+
                 Label("\(post.comments)", systemImage: "bubble.right")
                 Spacer()
                 Image(systemName: "square.and.arrow.up")
@@ -67,14 +89,18 @@ struct FeedPostCard: View {
 #Preview {
     FeedPostCard(
         post: FeedPost(
+            id: "preview-post",
             username: "Nishan",
             handle: "@nishan",
             category: .stem,
             timePosted: "now",
             caption: "This is a sample post card preview.",
             likes: 12,
-            comments: 3
-        )
+            comments: 3,
+            imageURL: nil,
+            isLikedByCurrentUser: false
+        ),
+        onLikeTapped: {}
     )
     .padding()
 }

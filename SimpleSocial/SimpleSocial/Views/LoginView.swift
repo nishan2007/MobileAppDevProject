@@ -5,16 +5,7 @@
 //  Created by Nishan Narain on 4/8/26.
 //
 
-
-//
-//  LoginView.swift
-//  SimpleSocial
-//
-//  Created by Nishan Narain on 4/8/26.
-//
-
 import SwiftUI
-import ParseSwift
 
 struct LoginView: View {
     @Binding var username: String
@@ -30,17 +21,10 @@ struct LoginView: View {
 
         Task {
             do {
-                _ = try await User.login(username: username, password: password)
+                _ = try await AuthService.shared.login(username: username, password: password)
                 onLoginTapped()
-            } catch let error as ParseError {
-                switch error.code {
-                case .objectNotFound:
-                    errorMessage = "Incorrect username or password"
-                case .invalidSessionToken:
-                    errorMessage = "Session expired. Please log in again"
-                default:
-                    errorMessage = "Login failed. Try again"
-                }
+            } catch let error as AuthServiceError {
+                errorMessage = error.errorDescription
                 print("Login failed: \(error)")
             } catch {
                 errorMessage = "Something went wrong. Try again"

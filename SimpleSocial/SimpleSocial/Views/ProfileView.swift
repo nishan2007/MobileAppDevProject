@@ -6,18 +6,24 @@
 //
 
 import SwiftUI
-import ParseSwift
 
 struct ProfileView: View {
     let currentUserName: String
     let onLogoutTapped: () -> Void
+    @State private var errorMessage: String? = nil
 
     private func logout() {
+        errorMessage = nil
+
         Task {
             do {
-                try await User.logout()
+                try await AuthService.shared.logout()
                 onLogoutTapped()
+            } catch let error as AuthServiceError {
+                errorMessage = error.errorDescription
+                print("Logout failed: \(error)")
             } catch {
+                errorMessage = "Something went wrong. Try again"
                 print("Logout failed: \(error)")
             }
         }
@@ -54,7 +60,7 @@ struct ProfileView: View {
                     }
                     .padding(.top, 6)
 
-                    Button(action: onLogoutTapped) {
+                    Button(action: logout) {
                         Text("Log Out")
                             .fontWeight(.semibold)
                             .frame(maxWidth: .infinity)
@@ -65,6 +71,13 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 10)
+
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .font(.footnote)
+                            .foregroundStyle(.red)
+                            .padding(.horizontal, 24)
+                    }
 
                     Spacer()
                 }

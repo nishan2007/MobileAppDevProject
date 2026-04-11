@@ -20,4 +20,6 @@ struct Post: ParseObject {
     var caption: String?
     var likes: Int?
     var comments: Int?
+    var likedBy: [String]?
+    var image: ParseFile?
 }

@@ -8,12 +8,14 @@
 import Foundation
 
 struct FeedPost: Identifiable {
-    let id = UUID()
+    let id: String
     let username: String
     let handle: String
     let category: FeedCategory
     let timePosted: String
     let caption: String
-    let likes: Int
+    var likes: Int
     let comments: Int
+    let imageURL: URL?
+    var isLikedByCurrentUser: Bool
 }
