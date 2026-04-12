@@ -10,6 +10,7 @@ import SwiftUI
 struct FeedPostCard: View {
     let post: FeedPost
     let onLikeTapped: () -> Void
+    let onCommentTapped: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -71,7 +72,11 @@ struct FeedPostCard: View {
                 .buttonStyle(.plain)
                 .foregroundStyle(post.isLikedByCurrentUser ? .red : .secondary)
 
-                Label("\(post.comments)", systemImage: "bubble.right")
+                Button(action: onCommentTapped) {
+                    Label("\(post.comments)", systemImage: "bubble.right")
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.secondary)
                 Spacer()
                 Image(systemName: "square.and.arrow.up")
                     .foregroundStyle(.secondary)
@@ -100,7 +105,8 @@ struct FeedPostCard: View {
             imageURL: nil,
             isLikedByCurrentUser: false
         ),
-        onLikeTapped: {}
+        onLikeTapped: {},
+        onCommentTapped: {}
     )
     .padding()
 }

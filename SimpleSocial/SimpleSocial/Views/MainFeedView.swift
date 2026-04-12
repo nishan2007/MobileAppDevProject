@@ -10,6 +10,7 @@ import SwiftUI
 struct MainFeedView: View {
     let currentUserName: String
     @StateObject private var viewModel = FeedViewModel()
+    @State private var selectedPostForComments: FeedPost?
 
     var body: some View {
         NavigationStack {
@@ -62,6 +63,9 @@ struct MainFeedView: View {
                                     post: post,
                                     onLikeTapped: {
                                         viewModel.likePost(post)
+                                    },
+                                    onCommentTapped: {
+                                        selectedPostForComments = post
                                     }
                                 )
                             }
@@ -80,6 +84,14 @@ struct MainFeedView: View {
             Task {
                 await viewModel.loadPosts()
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .didCreateComment)) { _ in
+            Task {
+                await viewModel.loadPosts()
+            }
+        }
+        .sheet(item: $selectedPostForComments) { post in
+            CommentsView(post: post)
         }
     }
 }
