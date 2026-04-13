@@ -56,6 +56,7 @@ final class PostService {
         }
     }
 
+    // Fetches ALL posts (for the main feed)
     func fetchPosts() async throws -> [FeedPost] {
         do {
             let currentUsername = AuthService.shared.currentDisplayName().trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
@@ -81,6 +82,37 @@ final class PostService {
             throw PostServiceError.unknown(error.localizedDescription)
         } catch {
             throw PostServiceError.unknown("Unable to load posts right now.")
+        }
+    }
+    
+    // ADDED: Fetches ONLY posts by a specific user (for the Profile View)
+    func fetchPosts(for targetUsername: String) async throws -> [FeedPost] {
+        do {
+            let currentUsername = AuthService.shared.currentDisplayName().trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+            
+            // The query now includes a constraint: "username" == targetUsername
+            let fetchedPosts = try await Post.query("username" == targetUsername)
+                .order([.descending("createdAt")])
+                .find()
+
+            return fetchedPosts.map { post in
+                FeedPost(
+                    id: post.objectId ?? UUID().uuidString,
+                    username: post.username ?? "Unknown",
+                    handle: "@\((post.username ?? "user").lowercased())",
+                    category: FeedCategory(rawValue: post.category ?? "All") ?? .all,
+                    timePosted: relativeTimeString(from: post.createdAt),
+                    caption: post.caption ?? "",
+                    likes: post.likes ?? 0,
+                    comments: post.comments ?? 0,
+                    imageURL: post.image?.url,
+                    isLikedByCurrentUser: (post.likedBy ?? []).contains(currentUsername)
+                )
+            }
+        } catch let error as ParseError {
+            throw PostServiceError.unknown(error.localizedDescription)
+        } catch {
+            throw PostServiceError.unknown("Unable to load posts for this user right now.")
         }
     }
 
