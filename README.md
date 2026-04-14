@@ -52,17 +52,17 @@ SimpleSocial is a lightweight social media app focused on core features such as 
 - [x] User can view a feed of posts  
 - [x] User can like posts  
 - [x] User can stay logged in across sessions  
-
-#### 🔄 In Progress
 - [x] User can comment on posts  
 - [x] User can view their profile  
-- [x] User can see their posts on profile  
+- [x] User can see their posts on profile
+      
+#### 🔄 In Progress
+- [ ] User can view other user profiles  
+- [ ] User can pull to refresh feed  
+- [ ] Infinite scrolling for feed 
 
 #### ⏳ Planned (Next Sprint)
 - [ ] User can edit or delete posts  
-- [ ] User can view other user profiles  
-- [ ] User can pull to refresh feed  
-- [ ] Infinite scrolling for feed  
 - [ ] Notifications system  
 
 ---
