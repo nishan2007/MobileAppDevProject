@@ -48,6 +48,7 @@ Helps users organize events (parties, meetings, etc.)
 	•	Task checklist
     
 Sabrina Valdivia
+
 7. Quick POS Scanner App
 
 A lightweight app for scanning barcodes and checking prices.
